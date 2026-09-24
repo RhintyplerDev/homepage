@@ -1,0 +1,182 @@
+@font-face {
+    font-family: "Space Mono";
+    src: url("./SpaceMono-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Space Mono", system-ui, -apple-system, "Segoe UI", sans-serif;
+    background: #ffffff;
+    color: #222;
+    transition: background-color 2s ease, color 2s ease;
+}
+
+.menubar {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    border-bottom: 1px solid #d0d0d0;
+    background: #f5f5f5;
+    user-select: none;
+    transition: background-color 2s ease, border-color 2s ease;
+}
+
+.menu {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.menu-button {
+    display: flex;
+    align-items: center;
+    height: 36px;
+    padding: 0 12px;
+    border: none;
+    background: transparent;
+    color: #222;
+    font-family: inherit;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+}
+
+.menu-button:hover {
+    background: #e5e5e5;
+}
+
+.dropdown {
+    display: none;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    min-width: 160px;
+    padding: 4px;
+    background: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+    z-index: 100;
+    transition: background-color 2s ease, border-color 2s ease;
+}
+
+.menu.open .dropdown {
+    display: block;
+}
+
+.dropdown button {
+    display: block;
+    width: 100%;
+    padding: 7px 10px;
+    border: none;
+    background: transparent;
+    text-align: left;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.dropdown button:hover {
+    background: #eeeeee;
+}
+
+.notepad {
+    min-height: calc(100vh - 49px);
+    display: grid;
+    place-items: center;
+    padding: 32px;
+}
+
+.notepad textarea {
+    width: min(1000px, 100%);
+    min-height: 400px;
+    padding: 24px;
+    border: none;
+    background: transparent;
+    color: #222;
+    font: inherit;
+    line-height: 1.8;
+    text-align: center;
+    resize: none;
+    outline: none;
+    transition: color 2s ease;
+}
+
+.notepad textarea:focus {
+    outline: none;
+}
+
+.copyright {
+    position: fixed;
+    bottom: 16px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+    transition: color 2s ease;
+}
+
+body.dark-mode {
+    background: #101820;
+    color: #edf6ff;
+}
+
+body.dark-mode .menubar {
+    border-color: #344452;
+    background: #1b2935;
+}
+
+body.dark-mode .menu-button,
+body.dark-mode .dropdown button,
+body.dark-mode .notepad textarea {
+    color: #edf6ff;
+}
+
+body.dark-mode .dropdown {
+    background: #1b2935;
+    border-color: #344452;
+}
+
+body.dark-mode .copyright {
+    color: #aabccc;
+}
+
+.snow-layer {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 200;
+}
+
+.snowflake {
+    position: absolute;
+    top: 0;
+    color: #fff;
+    font-family: sans-serif;
+    line-height: 1;
+    text-shadow: 0 0 3px rgba(80, 120, 150, 0.7);
+    animation: snowfall linear forwards;
+}
+
+@keyframes snowfall {
+    from {
+        transform: translate3d(var(--start-x), -24px, 0) rotate(0deg);
+    }
+
+    to {
+        transform: translate3d(var(--drift), var(--settle-y), 0) rotate(360deg);
+    }
+}
