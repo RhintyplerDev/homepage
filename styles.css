@@ -143,15 +143,13 @@ body {
 }
 
 .halloween-pumpkin-scene {
-    display: block;
     width: 100%;
     height: 100%;
-    perspective: none;
+    transform-style: preserve-3d;
 }
 
 .halloween-pumpkin-cube {
     position: relative;
-    display: block;
     width: var(--pumpkin-size);
     height: var(--pumpkin-size);
     margin: auto;

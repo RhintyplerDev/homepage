@@ -146,9 +146,18 @@ if (month === 9 && (day === 30 || day === 31)) {
 
     if (pumpkin) {
         pumpkin.hidden = false;
-        pumpkin.addEventListener("click", event => {
+
+        const releaseCandies = event => {
             event.stopPropagation();
             spawnCandies(pumpkin);
+        };
+
+        pumpkin.addEventListener("click", releaseCandies);
+        pumpkin.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+                event.preventDefault();
+                releaseCandies(event);
+            }
         });
     }
 }
