@@ -139,12 +139,14 @@ body {
     border: none;
     background: transparent;
     cursor: pointer;
-    z-index: 150;
+    z-index: 250;
+    transform-style: preserve-3d;
 }
 
 .halloween-pumpkin-scene {
     width: 100%;
     height: 100%;
+    perspective: 100000px;
     transform-style: preserve-3d;
 }
 
@@ -162,39 +164,40 @@ body {
 .halloween-pumpkin-face {
     position: absolute;
     inset: 0;
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    image-rendering: pixelated;
+    overflow: hidden;
     backface-visibility: hidden;
+    transform-style: preserve-3d;
+}
+
+.halloween-pumpkin-face img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    image-rendering: pixelated;
+    pointer-events: none;
 }
 
 .halloween-pumpkin-face-front {
-    background-image: url("./assets/halloween/carved_pumpkin.png");
     transform: translateZ(calc(var(--pumpkin-size) / 2));
 }
 
 .halloween-pumpkin-face-back {
-    background-image: url("./assets/halloween/pumpkin_side.png");
     transform: rotateY(180deg) translateZ(calc(var(--pumpkin-size) / 2));
 }
 
 .halloween-pumpkin-face-left {
-    background-image: url("./assets/halloween/pumpkin_side.png");
     transform: rotateY(-90deg) translateZ(calc(var(--pumpkin-size) / 2));
 }
 
 .halloween-pumpkin-face-right {
-    background-image: url("./assets/halloween/pumpkin_side.png");
     transform: rotateY(90deg) translateZ(calc(var(--pumpkin-size) / 2));
 }
 
 .halloween-pumpkin-face-top {
-    background-image: url("./assets/halloween/pumpkin_top.png");
     transform: rotateX(90deg) translateZ(calc(var(--pumpkin-size) / 2));
 }
 
 .halloween-pumpkin-face-bottom {
-    background-image: url("./assets/halloween/pumpkin_side.png");
     transform: rotateX(-90deg) translateZ(calc(var(--pumpkin-size) / 2));
 }
 
