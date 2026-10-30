@@ -89,7 +89,71 @@ function startSnow() {
     }, 150);
 }
 
-if (new Date().getMonth() === 11) {
+const today = new Date();
+const month = today.getMonth();
+const day = today.getDate();
+
+const candyColors = [
+    "brown",
+    "cyan",
+    "pink",
+    "orange",
+    "blue",
+    "purple",
+    "red",
+    "yellow",
+    "green",
+];
+
+function spawnCandies(pumpkin) {
+    const rect = pumpkin.getBoundingClientRect();
+    const originX = rect.left + rect.width / 2;
+    const originY = rect.top + rect.height / 2;
+
+    for (let index = 0; index < 3; index += 1) {
+        const candy = document.createElement("img");
+        const color = candyColors[Math.floor(Math.random() * candyColors.length)];
+
+        candy.className = "halloween-candy";
+        candy.src = `./assets/halloween/candy_${color}.png`;
+        candy.alt = "";
+        candy.setAttribute("aria-hidden", "true");
+        candy.style.left = `${originX - 18}px`;
+        candy.style.top = `${originY - 18}px`;
+        candy.style.setProperty(
+            "--candy-x",
+            `${(Math.random() * 160 - 120).toFixed(1)}px`
+        );
+        candy.style.setProperty(
+            "--candy-y",
+            `${(-80 - Math.random() * 100).toFixed(1)}px`
+        );
+        candy.style.setProperty(
+            "--candy-rot",
+            `${(Math.random() * 360 - 180).toFixed(1)}deg`
+        );
+
+        candy.addEventListener("animationend", () => {
+            candy.remove();
+        });
+
+        document.body.appendChild(candy);
+    }
+}
+
+if (month === 9 && (day === 30 || day === 31)) {
+    const pumpkin = document.querySelector(".halloween-pumpkin");
+
+    if (pumpkin) {
+        pumpkin.hidden = false;
+        pumpkin.addEventListener("click", event => {
+            event.stopPropagation();
+            spawnCandies(pumpkin);
+        });
+    }
+}
+
+if (month === 11) {
     startSnow();
 }
 

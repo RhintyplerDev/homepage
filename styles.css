@@ -128,6 +128,114 @@ body {
     transition: color 2s ease;
 }
 
+.halloween-pumpkin {
+    --pumpkin-size: min(72px, 18vw);
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: calc(var(--pumpkin-size) * 1.45);
+    height: calc(var(--pumpkin-size) * 1.45);
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    z-index: 150;
+}
+
+.halloween-pumpkin-scene {
+    display: block;
+    width: 100%;
+    height: 100%;
+    perspective: none;
+}
+
+.halloween-pumpkin-cube {
+    position: relative;
+    display: block;
+    width: var(--pumpkin-size);
+    height: var(--pumpkin-size);
+    margin: auto;
+    top: 18%;
+    transform-style: preserve-3d;
+    transform: rotateX(-45deg) rotateY(45deg);
+    animation: pumpkin-turn 10s linear infinite;
+}
+
+.halloween-pumpkin-face {
+    position: absolute;
+    inset: 0;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    image-rendering: pixelated;
+    backface-visibility: hidden;
+}
+
+.halloween-pumpkin-face-front {
+    background-image: url("./assets/halloween/carved_pumpkin.png");
+    transform: translateZ(calc(var(--pumpkin-size) / 2));
+}
+
+.halloween-pumpkin-face-back {
+    background-image: url("./assets/halloween/pumpkin_side.png");
+    transform: rotateY(180deg) translateZ(calc(var(--pumpkin-size) / 2));
+}
+
+.halloween-pumpkin-face-left {
+    background-image: url("./assets/halloween/pumpkin_side.png");
+    transform: rotateY(-90deg) translateZ(calc(var(--pumpkin-size) / 2));
+}
+
+.halloween-pumpkin-face-right {
+    background-image: url("./assets/halloween/pumpkin_side.png");
+    transform: rotateY(90deg) translateZ(calc(var(--pumpkin-size) / 2));
+}
+
+.halloween-pumpkin-face-top {
+    background-image: url("./assets/halloween/pumpkin_top.png");
+    transform: rotateX(90deg) translateZ(calc(var(--pumpkin-size) / 2));
+}
+
+.halloween-pumpkin-face-bottom {
+    background-image: url("./assets/halloween/pumpkin_side.png");
+    transform: rotateX(-90deg) translateZ(calc(var(--pumpkin-size) / 2));
+}
+
+@keyframes pumpkin-turn {
+    from {
+        transform: rotateX(-45deg) rotateY(45deg);
+    }
+
+    to {
+        transform: rotateX(-45deg) rotateY(405deg);
+    }
+}
+
+.halloween-candy {
+    position: fixed;
+    width: 36px;
+    height: auto;
+    pointer-events: none;
+    z-index: 160;
+    image-rendering: pixelated;
+    animation: candy-pop 1.1s ease-out forwards;
+}
+
+@keyframes candy-pop {
+    0% {
+        transform: translate(0, 0) rotate(0deg) scale(0.4);
+        opacity: 1;
+    }
+
+    70% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(var(--candy-x), var(--candy-y)) rotate(var(--candy-rot)) scale(1);
+        opacity: 0;
+    }
+}
+
 body.dark-mode {
     background: #101820;
     color: #edf6ff;
